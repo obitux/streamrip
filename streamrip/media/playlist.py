@@ -123,7 +123,11 @@ class Playlist(Media):
             track = await item.resolve()
             if track is None:
                 return
-            await track.rip()
+            try:
+                await track.rip()
+            except Exception as e:
+                logger.error(f"An error occurred with track. Skipping and continuing. " + item)
+                logger.error(e)
 
         batches = self.batch(
             [_resolve_download(track) for track in self.tracks],
