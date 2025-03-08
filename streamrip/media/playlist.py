@@ -126,7 +126,7 @@ class Playlist(Media):
             try:
                 await track.rip()
             except Exception as e:
-                logger.error(f"An error occurred with track. Skipping and continuing. " + item)
+                logger.error(f"An error occurred with track. Skipping and continuing. ")
                 logger.error(e)
 
         batches = self.batch(
